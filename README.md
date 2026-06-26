@@ -2,23 +2,23 @@
 
 Upload PDFs and ask questions about them. The app extracts and chunks the text,
 embeds it with Gemini, stores it in ChromaDB, and answers your questions from the
-most relevant chunks — with the source page it pulled each answer from.
+most relevant chunks with the source page it pulled each answer from.
 
 This is retrieval-augmented generation (RAG): the model only answers from what it
 retrieved, so it stays grounded in your documents instead of guessing.
 
-It ships as one service — a FastAPI backend that also serves a small web UI, so
+It ships as one service a FastAPI backend that also serves a small web UI, so
 there's a single thing to run and a single thing to deploy.
 
 ## What it does
 
-- **Upload** a PDF — text is extracted, chunked, embedded and indexed
-- **Ask** questions — answers come back with source references (filename + page)
-- **Multi-document** — search across everything, or scope to one document
-- **Chat history** — every question/answer turn is saved under a session id
-- **Streaming** — watch the answer arrive token-by-token
-- **Auth** — flip on a shared API key with one env var
-- **Web UI** — upload + chat from the browser, served by the API itself
+- **Upload** a PDF text is extracted, chunked, embedded and indexed
+- **Ask** questions answers come back with source references (filename + page)
+- **Multi-document** search across everything, or scope to one document
+- **Chat history** every question/answer turn is saved under a session id
+- **Streaming** watch the answer arrive token-by-token
+- **Auth** flip on a shared API key with one env var
+- **Web UI** upload + chat from the browser, served by the API itself
 
 ## How it works
 
@@ -40,8 +40,8 @@ app/
   config.py            # settings loaded from .env
   schemas.py           # request/response models (validation lives here)
   routers/
-    documents.py       # /api/documents — upload + list
-    chat.py            # /api/chat — ask, streaming ask, history
+    documents.py       # /api/documents: upload + list
+    chat.py            # /api/chat: ask, streaming ask, history
   services/
     pdf.py             # text extraction + chunking
     embeddings.py      # Gemini embeddings (document vs query)
@@ -93,7 +93,7 @@ Set in `.env` (see `.env.example`):
 
 | Variable          | Default                      | What it does                              |
 |-------------------|------------------------------|-------------------------------------------|
-| `GEMINI_API_KEY`  | —                            | your Gemini key (required)                |
+| `GEMINI_API_KEY`  | --                           | your Gemini key (required)                |
 | `GEMINI_MODEL`    | `gemini-2.5-flash`           | model used to write answers               |
 | `EMBEDDING_MODEL` | `models/text-embedding-004`  | model used to embed text                  |
 | `API_KEY`         | empty                        | if set, every API endpoint needs `X-API-Key` |
