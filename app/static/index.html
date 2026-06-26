@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document Assistant</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <!-- grain + gradient depth layers sit behind everything -->
+  <div class="bg-layer" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo" aria-hidden="true"></span>
+      <div>
+        <h1>Document Assistant</h1>
+        <p class="tagline">Ask your PDFs, get answers with sources</p>
+      </div>
+    </div>
+    <a class="api-link" href="/api/docs" target="_blank" rel="noopener">API docs →</a>
+  </header>
+
+  <main class="layout">
+    <!-- left: documents -->
+    <aside class="sidebar">
+      <h2>Documents</h2>
+
+      <label class="upload" id="dropzone">
+        <input type="file" id="file-input" accept="application/pdf" hidden />
+        <span class="upload-icon" aria-hidden="true">＋</span>
+        <span class="upload-text">Drop a PDF here<br /><em>or click to browse</em></span>
+      </label>
+      <p class="upload-status" id="upload-status"></p>
+
+      <div class="scope">
+        <label for="scope-select">Search in</label>
+        <select id="scope-select">
+          <option value="">All documents</option>
+        </select>
+      </div>
+
+      <ul class="doc-list" id="doc-list"></ul>
+    </aside>
+
+    <!-- right: chat -->
+    <section class="chat">
+      <div class="messages" id="messages">
+        <div class="empty-state" id="empty-state">
+          <div class="empty-mark" aria-hidden="true"></div>
+          <p class="empty-title">Upload a PDF, then ask anything.</p>
+          <p class="muted">Every answer comes back with the source page it was drawn from.</p>
+        </div>
+      </div>
+
+      <form class="composer" id="composer">
+        <input
+          type="text"
+          id="question"
+          placeholder="Ask a question about your documents…"
+          autocomplete="off"
+        />
+        <label class="stream-toggle" title="Stream the answer as it's written">
+          <input type="checkbox" id="stream-toggle" checked />
+          <span>stream</span>
+        </label>
+        <button type="submit" id="send">Ask</button>
+      </form>
+    </section>
+  </main>
+
+  <script src="/app.js"></script>
+</body>
+</html>
