@@ -8,7 +8,7 @@ class Settings(BaseSettings):
 
     gemini_api_key: str
     gemini_model: str = "gemini-2.5-flash"
-    embedding_model: str = "models/text-embedding-004"
+    embedding_model: str = "models/gemini-embedding-004"
     log_level: str = "INFO"
     app_name: str = "Document Assistant API"
 
